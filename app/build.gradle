@@ -166,4 +166,8 @@ dependencies {
 
     // SwipeRefreshLayout (reference for CircularProgressDrawable)
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
+    // Facebook Shimmer
+    def shimmer_version = "0.1"
+    implementation "com.facebook.shimmer:shimmer:$shimmer_version.0@aar"
 }

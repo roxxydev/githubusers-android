@@ -8,11 +8,12 @@
     <color name="colorSecondaryVariant">#0A42C2</color>
     <color name="colorOnSecondary">#B5CAFB</color>
 
-    <color name="colorBg">#E5E5E5</color>
-
     <color name="colorTextPrimary">#1C1917</color>
     <color name="colorTextSubHeader">#78716C</color>
     <color name="colorTextButton">#000000</color>
     <color name="colorBaseDark">#F5F5F4</color>
     <color name="colorBaseLight">#FFFFFF</color>
+
+    <color name="colorBg">#E5E5E5</color>
+    <color name="colorBgShimmer">#DDDDDD</color>
 </resources>

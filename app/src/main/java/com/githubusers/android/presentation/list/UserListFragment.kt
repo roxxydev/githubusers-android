@@ -50,7 +50,8 @@ class UserListFragment: Fragment(R.layout.fragment_user_list) {
         super.onViewCreated(view, savedInstanceState)
         subscribeObservers()
         initViews()
-        displayInitialProgressBar(true)
+        // displayInitialProgressBar(true)
+        displayShimmer(true)
         viewModel.setStateEvent(UserIntent.GetUserListIntent)
     }
 
@@ -76,7 +77,8 @@ class UserListFragment: Fragment(R.layout.fragment_user_list) {
     private fun subscribeObservers() {
         viewModel.dataState.observe(viewLifecycleOwner, Observer { dataState ->
             if (dataState is DataState.SUCCESS<UserListDataState>) {
-                displayInitialProgressBar(false)
+                // displayInitialProgressBar(false)
+                displayShimmer(false)
                 displayLoadMoreProgressBar(false)
                 dataState.data?.users?.let { it ->
                     updateList(it)
@@ -84,7 +86,8 @@ class UserListFragment: Fragment(R.layout.fragment_user_list) {
             }
             else if (dataState is DataState.ERROR) {
                 displayLoadMoreProgressBar(false)
-                displayInitialProgressBar(false)
+                // displayInitialProgressBar(false)
+                displayShimmer(false)
                 dataState.stateMessage?.message?.let {
                     UiUtil.displayToast(requireContext(), it)
                 }
@@ -102,6 +105,18 @@ class UserListFragment: Fragment(R.layout.fragment_user_list) {
         }
         else {
             binding.progressBarInitial.visibility = View.GONE
+        }
+    }
+
+    private fun displayShimmer(isDisplayed: Boolean) {
+        if (isDisplayed) {
+            displayEmptyMessage(false)
+            binding.shimmerViewContainer.visibility = View.VISIBLE
+            binding.shimmerViewContainer.startShimmerAnimation()
+        }
+        else {
+            binding.shimmerViewContainer.stopShimmerAnimation()
+            binding.shimmerViewContainer.visibility = View.GONE
         }
     }
 
@@ -125,6 +140,7 @@ class UserListFragment: Fragment(R.layout.fragment_user_list) {
     }
 
     private fun updateList(users: List<User>?) {
+        binding.mainRecyclerview.visibility = View.VISIBLE
         users?.let {
             when(users.isEmpty()) {
                 true -> displayEmptyMessage(true)
