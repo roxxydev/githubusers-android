@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">Github Users</string>
+
+    <string name="error_network">
+        No internet connection. Check your connection and try again.
+    </string>
+    <string name="error_message">Having trouble at the moment, Please check your connection and try again.</string>
+
+    <string name="dlg_ok">OK</string>
+
+    <!-- User List -->
+    <string name="user_list_empty">No available list of users to show</string>
+
+    <!-- User Details -->
+    <string name="user_details_appbar_title">Profile</string>
+    <string name="label_url">URL</string>
+    <string name="label_created_at">Joined</string>
+    <string name="label_type">Type</string>
+    <string name="label_username">Username</string>
+    <string name="label_name">Name</string>
+    <string name="label_company">Company</string>
+    <string name="label_blog">Blog</string>
+    <string name="label_location">Location</string>
+    <string name="label_email">Email</string>
+    <string name="label_hireable">Hireable</string>
+    <string name="label_bio">Bio</string>
+    <string name="label_twitter_username">Twitter</string>
+    <string name="label_public_repos">Public Repos</string>
+    <string name="label_public_gists">Public Gists</string>
+    <string name="label_followers">Followers</string>
+    <string name="label_following">Following</string>
+    <string name="label_note">Note</string>
+
+    <string name="label_yes">Yes</string>
+    <string name="label_no">No</string>
+
+    <string name="btn_edit_note">Edit Note</string>
+    <string name="btn_save_note">Save Note</string>
+
+    <!-- Message -->
+    <string name="msg_no_internet">No internet connection</string>
+    <string name="msg_btn_ok">OK</string>
+
+    <!-- Menu -->
+    <string name="menu_search">Search</string>
+    <string name="menu_search_hint">Search username</string>
+
+</resources>

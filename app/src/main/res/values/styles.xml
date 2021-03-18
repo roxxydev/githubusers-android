@@ -1,0 +1,133 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+
+        <item name="android:windowBackground">@color/colorBg</item>
+        <item name="android:colorBackground">@color/colorBg</item>
+
+        <!-- To set cursor color of textinput layout -->
+        <item name="colorControlActivated">@color/colorTextPrimary</item>
+
+        <item name="fontFamily">@font/public_sans</item>
+        <item name="android:fontFamily">@font/public_sans</item>
+        <item name="textInputStyle">@style/Widget.App.TextInputLayout</item>
+        <item name="editTextStyle">@style/Widget.App.TextInputEditText</item>
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorOnPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryVariant</item>
+
+        <item name="android:statusBarColor">@color/colorBaseDark</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <item name="actionMenuTextAppearance">@style/App.ToolbarMenuItem</item>
+    </style>
+
+    <!-- Toolbar Menu Text -->
+
+    <style name="App.ToolbarMenuItem" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
+        <item name="fontFamily">@font/public_sans</item>
+        <item name="android:fontFamily">@font/public_sans</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="navigationIconTint">@color/colorTextPrimary</item>
+        <item name="colorControlNormal">@color/colorTextPrimary</item>
+        <item name="actionMenuTextColor">@color/colorTextPrimary</item>
+    </style>
+
+    <!-- Button -->
+
+    <style name="Widget.App.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/colorTextButton</item>
+        <item name="backgroundTint">@color/colorPrimary</item>
+    </style>
+
+    <!-- TextInput -->
+
+    <style name="Widget.App.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/colorTextPrimary</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="hintTextColor">@color/colorTextPrimary</item>
+    </style>
+
+    <!-- EditText / TextInput -->
+
+    <style name="Widget.App.TextInputEditText" parent="Widget.Design.TextInputEditText">
+        <item name="boxStrokeColor">@color/colorTextPrimary</item>
+        <item name="android:textColor">@drawable/details_text_color</item>
+    </style>
+
+    <!-- TextViews -->
+
+    <style name="Widget.App.TextBody" parent="@style/TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">@font/public_sans</item>
+        <item name="android:fontFamily">@font/public_sans</item>
+    </style>
+
+    <style name="Widget.App.TextBody1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">@font/public_sans</item>
+        <item name="android:fontFamily">@font/public_sans</item>
+    </style>
+
+    <style name="Widget.App.TextBody2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/public_sans</item>
+        <item name="android:fontFamily">@font/public_sans</item>
+    </style>
+
+    <style name="Widget.App.TextBody3" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/public_sans</item>
+        <item name="android:fontFamily">@font/public_sans</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Widget.App.TextBody4" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/public_sans</item>
+        <item name="android:fontFamily">@font/public_sans</item>
+        <item name="android:textSize">11sp</item>
+    </style>
+
+    <style name="Widget.App.TextBody5" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/public_sans</item>
+        <item name="android:fontFamily">@font/public_sans</item>
+        <item name="android:textSize">8sp</item>
+    </style>
+
+    <style name="Widget.App.TextHeadline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="fontFamily">@font/public_sans</item>
+        <item name="android:fontFamily">@font/public_sans</item>
+    </style>
+
+    <style name="Widget.App.TextHeadline5" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="fontFamily">@font/public_sans</item>
+        <item name="android:fontFamily">@font/public_sans</item>
+    </style>
+
+    <style name="Widget.App.TextHeadline4" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="fontFamily">@font/public_sans</item>
+        <item name="android:fontFamily">@font/public_sans</item>
+    </style>
+
+    <style name="Widget.App.TextHeadline3" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="fontFamily">@font/public_sans</item>
+        <item name="android:fontFamily">@font/public_sans</item>
+    </style>
+
+    <!-- Top App Bar -->
+    <style name="Widget.App.AppBar.Top" parent="Widget.MaterialComponents.AppBarLayout.Primary">
+        <item name="android:background">@color/colorBaseLight</item>
+        <item name="android:elevation">0dp</item>
+    </style>
+
+    <!-- Material Toolbar -->
+    <style name="Widget.App.Toolbar" parent="Widget.MaterialComponents.Toolbar.PrimarySurface">
+        <item name="colorControlNormal">@color/colorTextPrimary</item>
+        <item name="actionMenuTextColor">@color/colorTextPrimary</item>
+        <item name="titleTextColor">@color/colorTextPrimary</item>
+        <item name="android:background">@color/colorBaseLight</item>
+        <item name="navigationIconTint">@color/colorTextPrimary</item>
+        <item name="maxLines">2</item>
+        <item name="contentInsetStart">0dp</item>
+        <item name="contentInsetLeft">0dp</item>
+        <item name="contentInsetStartWithNavigation">0dp</item>
+    </style>
+
+</resources>
