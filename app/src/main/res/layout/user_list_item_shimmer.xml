@@ -6,9 +6,8 @@
     android:id="@+id/user_list_item_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clickable="true"
-    android:focusable="true"
     app:contentPadding="4dp"
+    app:cardCornerRadius="0dp"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout

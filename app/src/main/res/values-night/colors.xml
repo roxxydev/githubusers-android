@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFC53D</color>
+    <color name="colorPrimaryVariant">#E4A100</color>
+    <color name="colorOnPrimary">#FFE8B1</color>
+
+    <color name="colorTextPrimary">#ffffff</color>
+    <color name="colorTextSubHeader">#fafafa</color>
+    <color name="colorTextButton">@color/colorBaseDark</color>
+
+    <color name="colorBaseDark">#000000</color>
+    <color name="colorBaseLight">#1b1b1b</color>
+    <color name="colorBg">#484848</color>
+
+    <color name="colorBgShimmer">#6d6d6d</color>
+    <color name="colorCardView">#212121</color>
+</resources>

@@ -1,5 +1,7 @@
 # Github Users
 
+<img src="/screenshots/day_mode.png" width="30%"/><img src="/screenshots/night_mode.png" width="30%"/>
+
 Android project written in Kotlin which demonstrates MVVM/MVI design architecture and caching mechanism.
 
 1. Retrieve data from an api with [Retrofit](https://square.github.io/retrofit/)

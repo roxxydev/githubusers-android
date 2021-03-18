@@ -8,6 +8,6 @@
             android:icon="@drawable/ic_search"
             android:title="@string/menu_search"
             app:actionLayout="@layout/search_view_layout"
-            app:showAsAction="ifRoom|collapseActionView" />/>
+            app:showAsAction="ifRoom|collapseActionView"/>
     </group>
 </menu>
