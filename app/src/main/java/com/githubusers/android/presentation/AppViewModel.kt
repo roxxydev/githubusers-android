@@ -1,21 +1,22 @@
-package com.githubusers.android.presentation.home
+package com.githubusers.android.presentation
 
 import android.content.Context
-import androidx.hilt.Assisted
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.githubusers.android.domain.state.DataState
 import com.githubusers.android.presentation.util.ConnectionLiveData
+import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
-class HomeViewModel
-@ViewModelInject
+@HiltViewModel
+class AppViewModel
+@Inject
 constructor(
     @ApplicationContext private val appCtx: Context,
-    @Assisted private val savedStateHandle: SavedStateHandle
+    private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val _dataState: MutableLiveData<DataState<MainDataState>> = MutableLiveData()
@@ -29,6 +30,7 @@ constructor(
             when (intent) {
                 is MainIntent.InitHomeIntent -> {
                     _dataState.value = DataState.SUCCESS(
+                        // TODO Setup any initialization config here
                         MainDataState(
                             true,
                             null

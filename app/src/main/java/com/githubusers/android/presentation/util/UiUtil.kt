@@ -6,18 +6,12 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import androidx.navigation.NavController
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.githubusers.android.R
-import com.githubusers.android.presentation.details.UserDetailsFragment
-import com.githubusers.android.presentation.home.HomeFragment
-import com.githubusers.android.presentation.list.UserListFragment
-import com.google.android.material.appbar.MaterialToolbar
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 data class DisplayImageOpts(
     val isDisplayLoading: Boolean,
@@ -28,7 +22,6 @@ data class DisplayImageOpts(
 class UiUtil {
 
     enum class Screen {
-        HOME,
         USER_LIST,
         USER_DETAILS
     }
@@ -39,95 +32,15 @@ class UiUtil {
             Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
         }
 
-        @ExperimentalCoroutinesApi
-        fun replaceFragment(
-            fragmentManager: FragmentManager,
-            fragmentContainer: Int,
-            screen: Screen,
-            arguments: Bundle?
-        ) {
-            var newFrag: Fragment? = null
-            var newFragTag: String? = null
-            var isAddToBackStack = false
-
-            when (screen) {
-                Screen.HOME -> {
-                    newFrag = HomeFragment()
-                    newFragTag = HomeFragment::class.simpleName
-                }
-                Screen.USER_LIST -> {
-                    newFrag = UserListFragment()
-                    newFragTag = UserListFragment::class.simpleName
-                }
-                Screen.USER_DETAILS -> {
-                    newFrag = UserDetailsFragment()
-                    newFrag.arguments = arguments
-                    newFragTag = UserDetailsFragment::class.simpleName
-                    isAddToBackStack = true
-                }
+        /**
+         * Helper method for navigating between fragments in NavigationHost.
+         */
+        fun navigateTo(navController: NavController, action: Int, bundle: Bundle?) {
+            if (bundle != null) {
+                navController.navigate(action, bundle)
             }
-
-            val currFragment = fragmentManager
-                .findFragmentById(fragmentContainer)
-
-            if (!currFragment?.tag.equals(newFragTag)) {
-                newFrag.let {
-                    val fgmtTrx = fragmentManager.beginTransaction()
-                    if (isAddToBackStack) {
-                        fgmtTrx
-                            .replace(fragmentContainer, it, newFragTag)
-                            .addToBackStack(null)
-                            .commit()
-                    }
-                    else {
-                        fgmtTrx
-                            .replace(fragmentContainer, it, newFragTag)
-                            .commit()
-                    }
-
-                }
-            }
-        }
-
-        fun initTopAppbar(
-            screen: Screen,
-            topAppBarView: MaterialToolbar,
-            eventOnNavIconClicked: (() -> Unit)?
-        ) {
-            initTopAppbar(screen, topAppBarView, null, null, eventOnNavIconClicked)
-        }
-
-        fun initTopAppbar(
-            screen: Screen,
-            topAppBarView: MaterialToolbar,
-            toolbarTitle: String?,
-            navigationIconImageUrl: String?,
-            eventOnNavIconClicked: (() -> Unit)?
-        ) {
-            val ctx = topAppBarView.context
-
-            eventOnNavIconClicked?.let {
-                topAppBarView.setNavigationOnClickListener {
-                    eventOnNavIconClicked.invoke()
-                }
-            }
-
-            when(screen) {
-                Screen.HOME, Screen.USER_LIST -> {
-                    topAppBarView.title = toolbarTitle ?: ctx.getString(R.string.app_name)
-                    if (navigationIconImageUrl == null) {
-                        topAppBarView.navigationIcon = ContextCompat.getDrawable(ctx, R.drawable.ic_logo_githubusers)
-                    }
-                    else {
-                        displayDrawable(ctx, navigationIconImageUrl) { organizationIconDrawable ->
-                            topAppBarView.navigationIcon = organizationIconDrawable
-                        }
-                    }
-                }
-                Screen.USER_DETAILS -> {
-                    topAppBarView.navigationIcon = ContextCompat.getDrawable(ctx, R.drawable.ic_arrow_back)
-                    topAppBarView.title = toolbarTitle ?: ctx.getString(R.string.user_details_appbar_title)
-                }
+            else {
+                navController.navigate(action)
             }
         }
 

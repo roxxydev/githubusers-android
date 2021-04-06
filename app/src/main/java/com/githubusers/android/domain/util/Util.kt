@@ -1,6 +1,7 @@
 package com.githubusers.android.domain.util
 
 import android.annotation.SuppressLint
+import com.githubusers.android.domain.model.User
 import java.text.SimpleDateFormat
 import java.time.Instant
 import java.time.ZoneId
@@ -41,5 +42,11 @@ object Util {
         utc.set(Calendar.HOUR_OF_DAY, hour)
         utc.set(Calendar.MINUTE, minute)
         return format.format(utc.time)
+    }
+
+    fun findUserPositionInList(users: List<User>, userToFind: User): Int {
+        return users.indexOfFirst {
+            it.login == userToFind.login
+        }
     }
 }

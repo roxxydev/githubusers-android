@@ -1,17 +1,17 @@
 package com.githubusers.android.presentation.details
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.githubusers.android.R
 import com.githubusers.android.databinding.FragmentUserDetailsBinding
 import com.githubusers.android.domain.model.User
 import com.githubusers.android.domain.state.DataState
 import com.githubusers.android.domain.util.Util
+import com.githubusers.android.presentation.list.UserListFragment.Companion.ARGS_UPDATED_USER
 import com.githubusers.android.presentation.util.DisplayImageOpts
 import com.githubusers.android.presentation.util.UiUtil
 import com.google.android.material.textfield.TextInputLayout
@@ -34,36 +34,31 @@ class UserDetailsFragment: Fragment(R.layout.fragment_user_details) {
         val ARGS_USER = "username"
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        _binding = FragmentUserDetailsBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         user = arguments?.getParcelable(ARGS_USER)!!
+        _binding = FragmentUserDetailsBinding.bind(view)
         subscribeObservers()
         initViews()
         viewModel.setStateEvent(UserDetailsIntent.GetUserDetails(user.login))
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun subscribeObservers() {
         viewModel.dataState.observe(viewLifecycleOwner, Observer { dataState ->
-
             when(dataState) {
                 is DataState.SUCCESS<UserDetailsDataState> -> {
                     displayProgress(false)
                     dataState.data?.user?.let {
                         displayUserDetails(it)
+                        findNavController()
+                            .previousBackStackEntry
+                            ?.savedStateHandle
+                            ?.set(ARGS_UPDATED_USER, it)
                     }
                 }
 
@@ -101,12 +96,11 @@ class UserDetailsFragment: Fragment(R.layout.fragment_user_details) {
         }
     }
 
+    // TODO: Display progressbar if there's an network http request being called
     private fun displayProgress(isDisplayed: Boolean) {
         if (isDisplayed) {
-
         }
         else {
-
         }
     }
 

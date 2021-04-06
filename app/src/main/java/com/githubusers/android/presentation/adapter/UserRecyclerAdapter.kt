@@ -22,7 +22,7 @@ class UserRecyclerAdapter :
     ViewHolderInitializer<User, UserListItemBinding>
 {
     internal var itemsFull: ArrayList<User> = arrayListOf()
-    var toUserDetailsScreenCb: ((User) -> Unit)? = null
+    var toUserDetailsScreenCb: ((User, Int) -> Unit)? = null
 
     init {
         viewBindingInitializer = this
@@ -60,7 +60,7 @@ class UserRecyclerAdapter :
         notifyDataSetChanged()
     }
 
-    val userFilter: Filter = object : Filter() {
+    val itemFilter: Filter = object : Filter() {
 
         override fun performFiltering(constraint: CharSequence?): FilterResults? {
             val filteredList: MutableList<User> = ArrayList()
@@ -72,7 +72,10 @@ class UserRecyclerAdapter :
                         .trim { it <= ' ' }
 
                 for (item in itemsFull) {
-                    if (item.login.toLowerCase().contains(filterPattern)) {
+                    item.note?.toLowerCase()?.contains(filterPattern)
+
+                    if (item.login.toLowerCase().contains(filterPattern) ||
+                        (item.note != null && item.note!!.toLowerCase().contains(filterPattern))) {
                         filteredList.add(item)
                     }
                 }
@@ -109,7 +112,7 @@ class UserRecyclerAdapter :
 @ExperimentalCoroutinesApi
 class UserViewHolder(
         viewBinding: UserListItemBinding,
-        private val toUserDetailsScreenCb: ((User) -> Unit)?
+        private val toUserDetailsScreenCb: ((User, Int) -> Unit)?
 )
     : BaseViewHolder<User, UserListItemBinding>(viewBinding)
 {
@@ -122,11 +125,11 @@ class UserViewHolder(
     override fun setViews(item: User) {
         super.setViews(item)
         UiUtil.displayImage(itemView.context, item.avatarUrl, ivAvatar,
-                DisplayImageOpts(
-                        isDisplayLoading = true,
-                        isDisplayErrorImage = false,
-                        isCircleCrop = true
-                )
+            DisplayImageOpts(
+                isDisplayLoading = true,
+                isDisplayErrorImage = false,
+                isCircleCrop = true
+            )
         )
 
         tvName.text = item.getUsername()
@@ -140,7 +143,7 @@ class UserViewHolder(
         }
 
         itemContainer.setOnClickListener {
-            toUserDetailsScreenCb?.invoke(item)
+            toUserDetailsScreenCb?.invoke(item, adapterPosition)
         }
     }
 }
